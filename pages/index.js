@@ -1,5 +1,4 @@
 import MeetupList from "../components/meetups/MeetupList";
-import { useState, useEffect } from "react";
 const data = [
   {
     id: "123",
@@ -27,14 +26,18 @@ const data = [
   },
 ];
 
-export default function HomePage() {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+export default function HomePage({ meetups }) {
+  return <MeetupList meetups={meetups} />;
+}
 
-  useEffect(() => {
-
-    setLoadedMeetups(data)
-    //get request to server
-    //set state
-  }, [])
-  return <MeetupList meetups={loadedMeetups} />;
+//Pre rendering process
+//Never executed on the client side -- Only during the build process
+export async function getStaticProps() {
+  //Fetch Data from API
+  return {
+    //Props returned here are props for the component to use 
+    props: {
+      meetups: data,
+    },
+  };
 }
