@@ -1,5 +1,5 @@
 import MeetupList from "../components/meetups/MeetupList";
-
+import { useState, useEffect } from "react";
 const data = [
   {
     id: "123",
@@ -28,5 +28,13 @@ const data = [
 ];
 
 export default function HomePage() {
-  return <MeetupList meetups={data} />;
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+
+  useEffect(() => {
+
+    setLoadedMeetups(data)
+    //get request to server
+    //set state
+  }, [])
+  return <MeetupList meetups={loadedMeetups} />;
 }
