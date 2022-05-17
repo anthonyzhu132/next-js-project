@@ -10,6 +10,23 @@ export default function MeetupDetailPage() {
   );
 }
 
+
+//Need this in dynamic paths to be able to tell the parameters
+export async function getStaticPaths() {
+  return {
+    fallback: true,
+    paths: [
+      { params: {
+        meetupId: '123'
+      }},
+      { params: {
+        meetupId: '1235'
+      }}
+    ]
+  }
+}
+
+
 export async function getStaticProps(context) {
   const meetupId = context.params.meetupId;
   console.log(meetupId);
