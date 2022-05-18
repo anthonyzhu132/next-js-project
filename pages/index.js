@@ -1,8 +1,17 @@
 import MeetupList from "../components/meetups/MeetupList";
 import { MongoClient } from "mongodb";
+import Head from "next/head";
 
 export default function HomePage({ meetups }) {
-  return <MeetupList meetups={meetups} />;
+  return (
+    <>
+      <Head>
+        <title>React Meetups with NextJs</title>
+        <meta name="description" content="Browse Meetups with NextJs" />
+      </Head>
+      <MeetupList meetups={meetups} />;
+    </>
+  );
 }
 
 //Renders data with server side code -- will fetch when there is change and not re-deploy
